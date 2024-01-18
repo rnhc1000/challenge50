@@ -67,12 +67,17 @@ The space complexity is determined by the memory required to store the rows and 
 intermediate results of the query. In this case, it is proportional to the number of 
 rows in the Queue table, so the space complexity is O(n)O(n)O(n).
 
-Code
-# Write your MySQL query statement below
-SELECT 
-    qOne.person_name
-FROM Queue qOne JOIN Queue qTwo ON qOne.turn >= qTwo.turn
-GROUP BY qOne.turn
-HAVING SUM(qTwo.weight) <= 1000
-ORDER BY SUM(qTwo.weight) DESC
-LIMIT 1
+# ---
+
+SELECT
+    QONE.PERSON_NAME
+FROM
+    QUEUE QONE
+    JOIN QUEUE QTWO
+    ON QONE.TURN >= QTWO.TURN
+GROUP BY
+    QONE.TURN
+HAVING
+    SUM(QTWO.WEIGHT) <= 1000
+ORDER BY
+    SUM(QTWO.WEIGHT) DESC LIMIT 1

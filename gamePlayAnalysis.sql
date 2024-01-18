@@ -31,13 +31,23 @@ Only the player with id 1 logged back in after the first day he had logged in
 so the answer is 1/3 = 0.33
 
 
-# Write your MySQL query statement below
 SELECT
-  ROUND(COUNT(DISTINCT player_id) / (SELECT COUNT(DISTINCT player_id) FROM Activity), 2) AS fraction
+  ROUND(COUNT(DISTINCT PLAYER_ID) / (
+    SELECT
+      COUNT(DISTINCT PLAYER_ID)
+    FROM
+      ACTIVITY
+  ),
+  2) AS FRACTION
 FROM
-  Activity
+  ACTIVITY
 WHERE
-  (player_id, DATE_SUB(event_date, INTERVAL 1 DAY))
-  IN (
-    SELECT player_id, MIN(event_date) AS first_login FROM Activity GROUP BY player_id
+  (PLAYER_ID, DATE_SUB(EVENT_DATE, INTERVAL 1 DAY)) IN (
+    SELECT
+      PLAYER_ID,
+      MIN(EVENT_DATE) AS FIRST_LOGIN
+    FROM
+      ACTIVITY
+    GROUP BY
+      PLAYER_ID
   )

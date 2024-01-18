@@ -31,4 +31,8 @@ The followers of 1 are {0}
 The followers of 2 are {0,1}
 
 
-SELECT distinct user_id, count(followers_id) as followers_count from followers 
+SELECT
+    DISTINCT USER_ID,
+    COUNT(FOLLOWERS_ID) AS FOLLOWERS_COUNT
+FROM
+    FOLLOWERS

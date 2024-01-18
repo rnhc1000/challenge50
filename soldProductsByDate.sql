@@ -38,7 +38,13 @@ For 2020-06-01,
 Sold items were (Pencil, Bible), we sort them lexicographically and separate them by a comma.
 For 2020-06-02, the Sold item is (Mask), we just return it.
 
-
-SELECT 
-    sell_date, count(products) 
-    AS num_sold,products FROM Activities GROUP BY sell_date ORDER BY sell_date ASC
+SELECT
+    SELL_DATE,
+    COUNT(PRODUCTS) AS NUM_SOLD,
+    PRODUCTS
+FROM
+    ACTIVITIES
+GROUP BY
+    SELL_DATE
+ORDER BY
+    SELL_DATE ASC

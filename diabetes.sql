@@ -30,8 +30,13 @@ Output:
 Explanation: Bob and George both have a condition that starts with DIAB1.
 
 
-SELECT 
-    patient_id, patient_name, conditions 
-FROM patients 
-WHERE conditions
-LIKE 'DIAB1%' OR conditions LIKE '% DIAB1%' 
+SELECT
+    PATIENT_ID,
+    PATIENT_NAME,
+    CONDITIONS
+FROM
+    PATIENTS
+WHERE
+    CONDITIONS LIKE 'DIAB1%'
+    OR 
+    CONDITIONS LIKE '% DIAB1%'

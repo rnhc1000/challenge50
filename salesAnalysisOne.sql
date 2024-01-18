@@ -30,7 +30,13 @@ Output:
 | Apple        | 2011  | 9000  |
 +--------------+-------+-------+
 
-SELECT  Product.product_name, Sales.year, Sales.price from Sales 
-    INNER JOIN
-        Product on sales.product_id = product.product_id 
-            order by sales.year desc;
+SELECT
+    PRODUCT.PRODUCT_NAME,
+    SALES.YEAR,
+    SALES.PRICE
+FROM
+    SALES
+    INNER JOIN PRODUCT
+    ON SALES.PRODUCT_ID = PRODUCT.PRODUCT_ID
+ORDER BY
+    SALES.YEAR DESC;

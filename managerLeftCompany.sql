@@ -52,8 +52,17 @@ also called the negative result
 IN operator allows you to specify multiple values in a WHERE clause
 ORDER BY keyword is used to sort the result-set in ascending or descending order.
 
-SELECT employee_id 
-FROM employees
-WHERE salary < 30000 AND manager_id NOT IN (
-    SELECT employee_id FROM employees
-) ORDER BY employee_id;
+SELECT
+    EMPLOYEE_ID
+FROM
+    EMPLOYEES
+WHERE
+    SALARY < 30000
+    AND MANAGER_ID NOT IN (
+        SELECT
+            EMPLOYEE_ID
+        FROM
+            EMPLOYEES
+    )
+ORDER BY
+    EMPLOYEE_ID;

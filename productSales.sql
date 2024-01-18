@@ -43,13 +43,23 @@ Time complexity: O(n)O(n)O(n)
 n is the number of rows in the table. This is because the query processes each row in the table once to find the first year of every product sold.
 
 
-SELECT product_id, year AS first_year, quantity, price 
-FROM Sales
-WHERE (product_id, year) IN (
-    SELECT product_id, MIN(year) 
-    FROM Sales 
-    GROUP BY product_id
-);
+SELECT
+    PRODUCT_ID,
+    YEAR       AS FIRST_YEAR,
+    QUANTITY,
+    PRICE
+FROM
+    SALES
+WHERE
+    (PRODUCT_ID, YEAR) IN (
+        SELECT
+            PRODUCT_ID,
+            MIN(YEAR)
+        FROM
+            SALES
+        GROUP BY
+            PRODUCT_ID
+    );
 
 Output: 
 +------------+------------+----------+-------+

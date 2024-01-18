@@ -82,25 +82,56 @@ Space complexity:
 O(N)O(N)O(N), where NNN is the total number of records in the Employee table. This is due to the storage of the intermediate results in the subquery.
 SQL Query
 -- Write your MySQL query statement below
-SELECT Department, Employee, Salary
-FROM (
-    SELECT 
-        d.name AS Department,
-        e.name AS Employee,
-        e.salary AS Salary,
-        DENSE_RANK() OVER (PARTITION BY d.name ORDER BY Salary DESC) AS rnk
-    FROM Employee e
-    JOIN Department d
-    ON e.departmentId = d.id
-) AS rnk_tbl
-WHERE rnk <= 3;
+SELECT
+    DEPARTMENT,
+    EMPLOYEE,
+    SALARY
+FROM
+    (
+        SELECT
+            D.NAME                                                       AS DEPARTMENT,
+            E.NAME                                                       AS EMPLOYEE,
+            E.SALARY                                                     AS SALARY,
+            DENSE_RANK() OVER (PARTITION BY D.NAME ORDER BY SALARY DESC) AS RNK
+        FROM
+            EMPLOYEE   E
+            JOIN DEPARTMENT D
+            ON E.DEPARTMENTID = D.ID
+    ) AS RNK_TBL
+WHERE
+    RNK <= 3;
 
-SELECT d.name AS Department, e.name AS Employee, e.salary AS Salary 
-FROM department d JOIN employee e ON d.id = e.departmentId
- WHERE salary >= (
-    SELECT CASE 
-    WHEN (SELECT COUNT(DISTINCT salary) FROM employee WHERE departmentId = d.id) >=3 
-    THEN (SELECT DISTINCT o.salary FROM employee o WHERE o.departmentId = ddep.id ORDER BY o.salary DESC LIMIT 1 OFFSET 2)
-    ELSE 0
-    END
- );
+SELECT
+    D.NAME AS DEPARTMENT,
+    E.NAME AS EMPLOYEE,
+    E.SALARY AS SALARY
+FROM
+    DEPARTMENT D
+    JOIN EMPLOYEE E
+    ON D.ID = E.DEPARTMENTID
+WHERE
+    SALARY >= (
+        SELECT
+            CASE
+                WHEN (
+                    SELECT
+                        COUNT(DISTINCT SALARY)
+                    FROM
+                        EMPLOYEE
+                    WHERE
+                        DEPARTMENTID = D.ID
+                ) >=3 THEN
+                    (
+                        SELECT
+                            DISTINCT O.SALARY
+                        FROM
+                            EMPLOYEE O
+                        WHERE
+                            O.DEPARTMENTID = DDEP.ID
+                        ORDER BY
+                            O.SALARY DESC LIMIT 1 OFFSET 2
+                    )
+                ELSE
+                    0
+            END
+    );

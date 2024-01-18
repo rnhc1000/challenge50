@@ -60,22 +60,52 @@ Output:
 | 13         | John         | Programming  | 1              |
 +------------+--------------+--------------+----------------+
 
-SELECT s.student_id, s.student_name, sub.subject_name, COALESCE(e.attended_exams, 0) AS attended_exams
-FROM Students s
-CROSS JOIN Subjects sub
-LEFT JOIN (
-    SELECT student_id, subject_name, COUNT(*) AS attended_exams
-    FROM Examinations
-    GROUP BY student_id, subject_name
-) e USING (student_id, subject_name)
-ORDER BY s.student_id, sub.subject_name;
+SELECT
+    S.STUDENT_ID,
+    S.STUDENT_NAME,
+    SUB.SUBJECT_NAME,
+    COALESCE(E.ATTENDED_EXAMS, 0) AS ATTENDED_EXAMS
+FROM
+    STUDENTS S
+    CROSS JOIN SUBJECTS SUB
+    LEFT JOIN (
+        SELECT
+            STUDENT_ID,
+            SUBJECT_NAME,
+            COUNT(*)     AS ATTENDED_EXAMS
+        FROM
+            EXAMINATIONS
+        GROUP BY
+            STUDENT_ID,
+            SUBJECT_NAME
+    ) E
+    USING (STUDENT_ID,
+    SUBJECT_NAME)
+ORDER BY
+    S.STUDENT_ID,
+    SUB.SUBJECT_NAME;
 
-SELECT s.student_id, s.student_name, sub.subject_name, COALESCE(e.attended_exams, 0) AS attended_exams
-FROM Students s
-CROSS JOIN Subjects sub
-LEFT JOIN (
-    SELECT student_id, subject_name, COUNT(*) AS attended_exams
-    FROM Examinations
-    GROUP BY student_id, subject_name
-) e ON s.student_id = e.student_id AND sub.subject_name = e.subject_name
-ORDER BY s.student_id, sub.subject_name;
+SELECT
+    S.STUDENT_ID,
+    S.STUDENT_NAME,
+    SUB.SUBJECT_NAME,
+    COALESCE(E.ATTENDED_EXAMS, 0) AS ATTENDED_EXAMS
+FROM
+    STUDENTS S
+    CROSS JOIN SUBJECTS SUB
+    LEFT JOIN (
+        SELECT
+            STUDENT_ID,
+            SUBJECT_NAME,
+            COUNT(*)     AS ATTENDED_EXAMS
+        FROM
+            EXAMINATIONS
+        GROUP BY
+            STUDENT_ID,
+            SUBJECT_NAME
+    ) E
+    ON S.STUDENT_ID = E.STUDENT_ID
+    AND SUB.SUBJECT_NAME = E.SUBJECT_NAME
+ORDER BY
+    S.STUDENT_ID,
+    SUB.SUBJECT_NAME;

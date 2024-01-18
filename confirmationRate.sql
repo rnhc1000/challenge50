@@ -48,11 +48,25 @@ User 7 made 3 requests and all were confirmed. The confirmation rate is 1.
 User 2 made 2 requests where one was confirmed and the other timed out. 
 The confirmation rate is 1 / 2 = 0.5.
 
-select s.user_id, round(avg(if(c.action="confirmed",1,0)),2) as confirmation_rate
-from Signups as s left join Confirmations as c on s.user_id = c.user_id group by user_id;
+SELECT
+    S.USER_ID,
+    ROUND(AVG(IF(C.ACTION="confirmed",
+    1,
+    0)),
+    2) AS CONFIRMATION_RATE
+FROM
+    SIGNUPS AS S
+    LEFT JOIN CONFIRMATIONS AS C
+    ON S.USER_ID = C.USER_ID
+GROUP BY
+    USER_ID;
 
-
-SELECT 
-    s.user_id, ROUND(AVG(IF(c.action="confirmed",1,0)),1) AS confirmation_rate 
-FROM 
-    Signups s LEFT JOIN Confirmations c ON s.user_id = c.user_id GROUP BY S.user_id
+SELECT
+    S.USER_ID,
+    ROUND(AVG(IF(C.ACTION="confirmed", 1, 0)), 1) AS CONFIRMATION_RATE
+FROM
+    SIGNUPS       S
+    LEFT JOIN CONFIRMATIONS C
+    ON S.USER_ID = C.USER_ID
+GROUP BY
+    S.USER_ID

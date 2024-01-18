@@ -21,8 +21,10 @@ Output:
 | 1       | Alice |
 | 2       | Bob   |
 +---------+-------+
-SELECT  user_id, 
-        CONCAT(UPPER(LEFT(name,1)), LOWER(RIGHT(name,LENGTH(name)-1))) 
-        AS NAME 
-        FROM users 
-        ORDER BY user_id ASC;
+SELECT
+        USER_ID,
+        CONCAT(UPPER(LEFT(NAME, 1)), LOWER(RIGHT(NAME, LENGTH(NAME)-1))) AS NAME
+FROM
+        USERS
+ORDER BY
+        USER_ID ASC;

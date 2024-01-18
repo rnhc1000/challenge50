@@ -33,7 +33,7 @@ Output:
 Explanation: john@example.com is repeated two times. 
 We keep the row with the smallest Id = 1.
 
-DELETE 
-    p1 
-    FROM person p1,person p2 
-    WHERE p1.email=p2.email AND p1.id>p2.id;
+DELETE P1 FROM PERSON P1,PERSON P2
+WHERE
+    P1.EMAIL=P2.EMAIL
+    AND P1.ID>P2.ID;

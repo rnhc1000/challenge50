@@ -72,18 +72,21 @@ This part selects accounts with an income greater than 50,000 and labels them as
 
 # ---
 
-SELECT "Low Salary" AS category,
-       sum(income < 20000) AS accounts_count
-  FROM Accounts
-
+SELECT
+    "Low Salary"        AS CATEGORY,
+    SUM(INCOME < 20000) AS ACCOUNTS_COUNT
+FROM
+    ACCOUNTS
 UNION
-
-SELECT "Average Salary" AS category,
-       sum(income BETWEEN 20000 AND 50000) AS accounts_count
-  FROM Accounts
-
+SELECT
+    "Average Salary"    AS CATEGORY,
+    SUM(INCOME BETWEEN 20000
+    AND 50000)          AS ACCOUNTS_COUNT
+FROM
+    ACCOUNTS
 UNION
-
-SELECT "High Salary" AS category,
-       sum(income > 50000) AS accounts_count
-  FROM Accounts;
+SELECT
+    "High Salary"       AS CATEGORY,
+    SUM(INCOME > 50000) AS ACCOUNTS_COUNT
+FROM
+    ACCOUNTS;

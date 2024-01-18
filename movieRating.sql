@@ -106,10 +106,28 @@ n is the number of rows in the table. This is because the query involves joining
 which requires scanning through all the rows in the tables to check the conditions.
 
 (
-    SELECT u.name AS results FROM users u INNER JOIN movierating m ON u.user_id = m.user_id HAVING  (SELECT max(count(m.rating)))
-)
-UNION ALL
-(
-    SELECT t.title AS results FROM movies t LEFT JOIN movierating m on t.movie_id = m.movie_id AND m.created_at LIKE '2020-02%' GROUP BY t.title
-    ORDER BY AVG(RATING) DESC,  t.title LIMIT 1
+    SELECT
+        U.NAME AS RESULTS
+    FROM
+        USERS U
+        INNER JOIN MOVIERATING M
+        ON U.USER_ID = M.USER_ID
+    HAVING
+        (
+            SELECT
+                MAX(COUNT(M.RATING))
+        )
+) UNION ALL (
+    SELECT
+        T.TITLE AS RESULTS
+    FROM
+        MOVIES T
+        LEFT JOIN MOVIERATING M
+        ON T.MOVIE_ID = M.MOVIE_ID
+        AND M.CREATED_AT LIKE '2020-02%'
+    GROUP BY
+        T.TITLE
+    ORDER BY
+        AVG(RATING) DESC,
+        T.TITLE LIMIT 1
 )
