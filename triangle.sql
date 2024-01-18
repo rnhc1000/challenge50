@@ -28,15 +28,26 @@ Output:
 +----+----+----+----------+
 
 SELECT
-    x,y,z, IF ((x+y>z AND (y+z>x) AND (z+x>y)), 'Yes', 'No') AS triangle 
-FROM triangle;
+    X,
+    Y,
+    Z,
+    IF ((X+Y>Z
+    AND (Y+Z>X)
+    AND (Z+X>Y)), 'Yes', 'No') AS TRIANGLE
+FROM
+    TRIANGLE;
 
 # ---
 
-SELECT 
-    x, y, z, 
-CASE
-    WHEN x+y>z and y+z>x and x+z>y THEN 'Yes' ELSE 'No'
-END 
-AS triangle
-FROM Triangle
+SELECT
+    X,
+    Y,
+    Z,
+    CASE
+        WHEN X+Y>Z AND Y+Z>X AND X+Z>Y THEN
+            'Yes'
+        ELSE
+            'No'
+    END AS TRIANGLE
+FROM
+    TRIANGLE

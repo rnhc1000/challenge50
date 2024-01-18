@@ -42,5 +42,16 @@ The mail of user 6 does not have the leetcode domain.
 The mail of user 7 starts with a period.
 
 
-select * from users where mail regexp '^[A-Za-z0-9. _%-]+@[A-Za-z0-9. -]+\\.'
-select * from users where mail regexp '^[A-Za-z][A-Za-z0-9_\.\-]*@leetcode(\\?com)?\\.com$'
+SELECT
+    *
+FROM
+    USERS
+WHERE
+    MAIL REGEXP '^[A-Za-z0-9. _%-]+@[A-Za-z0-9. -]+\\.'
+    
+SELECT
+    *
+FROM
+    USERS
+WHERE
+    MAIL REGEXP '^[A-Za-z][A-Za-z0-9_\.\-]*@leetcode(\\?com)?\\.com$'

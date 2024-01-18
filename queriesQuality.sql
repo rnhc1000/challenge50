@@ -45,18 +45,25 @@ Cat queries quality equals ((2 / 5) + (3 / 3) + (4 / 7)) / 3 = 0.66
 Cat queries poor_ query_percentage is (1 / 3) * 100 = 33.33
 
 
-SELECT 
-    QUERY_NAME, ROUND(AVG(RATING/POSITION), 2) AS QUALITY, 
-    ROUND(AVG(IF(RATING<3,1,0))*100, 2) AS POOR_QUERY_PERCENTAGE
-FROM QUERIES
-GROUP BY QUERY_NAME
+SELECT
+    QUERY_NAME,
+    ROUND(AVG(RATING/POSITION), 2)        AS QUALITY,
+    ROUND(AVG(IF(RATING<3, 1, 0))*100, 2) AS POOR_QUERY_PERCENTAGE
+FROM
+    QUERIES
+GROUP BY
+    QUERY_NAME
 
-# Write your MySQL query statement below
-SELECT 
-    q.query_name, 
-    ROUND((AVG(q.rating/q.position)),2) AS quality, 
-    ROUND(AVG(IF(q.rating<3,1,0))*100, 2) as poor_query_percentage 
-FROM Queries q 
-    GROUP BY query_name 
-    ORDER BY query_name desc
-    HAVING query_name IS NOT NULL
+# ---
+SELECT
+    Q.QUERY_NAME,
+    ROUND((AVG(Q.RATING/Q.POSITION)), 2)    AS QUALITY,
+    ROUND(AVG(IF(Q.RATING<3, 1, 0))*100, 2) AS POOR_QUERY_PERCENTAGE
+FROM
+    QUERIES Q
+GROUP BY
+    QUERY_NAME
+ORDER BY
+    QUERY_NAME DESC
+HAVING
+    QUERY_NAME IS NOT NULL

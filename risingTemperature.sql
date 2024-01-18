@@ -32,6 +32,11 @@ Add a condition in the WHERE clause to select the rows where the temperature of 
 is greater than the temperature of w2.
 Select the id of w1 as the result.
 
-SELECT w1.id
-FROM Weather w1, Weather w2
-WHERE DATEDIFF(w1.recordDate, w2.recordDate) = 1 AND w1.temperature > w2.temperature;
+SELECT
+    W1.ID
+FROM
+    WEATHER W1,
+    WEATHER W2
+WHERE
+    DATEDIFF(W1.RECORDDATE, W2.RECORDDATE) = 1
+    AND W1.TEMPERATURE > W2.TEMPERATURE;

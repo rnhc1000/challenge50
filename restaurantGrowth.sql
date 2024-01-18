@@ -85,23 +85,33 @@ The space complexity can be approximated as O(n)O(n)O(n), where n is the number 
 in the customer table
 
 SELECT
-    visited_on,
+    VISITED_ON,
     (
-        SELECT SUM(amount)
-        FROM CUSTOMER
-        WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
-    ) AS amount,
-    ROUND(
-        (
-            SELECT SUM(amount) / 7
-            FROM CUSTOMER
-            WHERE visited_on BETWEEN DATE_SUB(c.visited_on, INTERVAL 6 DAY) AND c.visited_on
-        ),
-        2
-    ) AS average_amount
-FROM CUSTOMER c
-WHERE visited_on >= (
-        SELECT DATE_ADD(MIN(visited_on), INTERVAL 6 DAY)
-        FROM CUSTOMER
+        SELECT
+            SUM(AMOUNT)
+        FROM
+            CUSTOMER
+        WHERE
+            VISITED_ON BETWEEN DATE_SUB(C.VISITED_ON, INTERVAL 6 DAY) AND C.VISITED_ON
+    ) AS AMOUNT,
+    ROUND( (
+        SELECT
+            SUM(AMOUNT) / 7
+        FROM
+            CUSTOMER
+        WHERE
+            VISITED_ON BETWEEN DATE_SUB(C.VISITED_ON, INTERVAL 6 DAY) AND C.VISITED_ON
+    ),
+    2 ) AS AVERAGE_AMOUNT
+FROM
+    CUSTOMER C
+WHERE
+    VISITED_ON >= (
+        SELECT
+            DATE_ADD(MIN(VISITED_ON),
+            INTERVAL 6 DAY)
+        FROM
+            CUSTOMER
     )
-GROUP BY visited_on;
+GROUP BY
+    VISITED_ON;

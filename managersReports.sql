@@ -27,11 +27,19 @@ Output:
 | John |
 +------+
 
-SELECT E1.name
-FROM Employee E1
-JOIN (
-    SELECT managerId, COUNT(*) AS directReports
-    FROM Employee
-    GROUP BY managerId
-    HAVING COUNT(*) >= 5
-) E2 ON E1.id = E2.managerId;
+SELECT
+    E1.NAME
+FROM
+    EMPLOYEE E1
+    JOIN (
+        SELECT
+            MANAGERID,
+            COUNT(*)  AS DIRECTREPORTS
+        FROM
+            EMPLOYEE
+        GROUP BY
+            MANAGERID
+        HAVING
+            COUNT(*) >= 5
+    ) E2
+    ON E1.ID = E2.MANAGERID;

@@ -29,12 +29,27 @@ Output:
 +----------+---------+-------------+----------------+--------------------+-----------------------+
 
 
-SELECT 
-    SUBSTR(trans_date,1,7) AS month,
-    country, count(id) AS trans_count, 
-    sum(CASE WHEN state='approved' THEN 1 ELSE 0 END) AS approved_count,
-    sum(amount) AS trans_total_amount,
-    sum(CASE WHEN state='approved' THEN amount ELSE 0 END) AS approved_total_amount
+SELECT
+    SUBSTR(TRANS_DATE, 1, 7) AS MONTH,
+    COUNTRY,
+    COUNT(ID)                AS TRANS_COUNT,
+    SUM(
+        CASE
+            WHEN STATE='approved' THEN
+                1
+            ELSE
+                0
+        END)                 AS APPROVED_COUNT,
+    SUM(AMOUNT)              AS TRANS_TOTAL_AMOUNT,
+    SUM(
+        CASE
+            WHEN STATE='approved' THEN
+                AMOUNT
+            ELSE
+                0
+        END)                 AS APPROVED_TOTAL_AMOUNT
 FROM
-    transactions
-    GROUP BY month,COUNTRY
+    TRANSACTIONS
+GROUP BY
+    MONTH,
+    COUNTRY

@@ -1,5 +1,5 @@
-Write a solution to find the average selling price for each product. average_price should be rounded 
-to 2 decimal places.
+Write a solution to find the average selling price for each product. average_price 
+should be rounded to 2 decimal places.
 Return the result table in any order.
 The result format is in the following example.
 Example 1:
@@ -31,9 +31,14 @@ Output:
 +------------+---------------+
 
 
-
-SELECT p.product_id, IFNULL(ROUND(SUM(units*price)/SUM(units),2),0) AS average_price
-FROM Prices p LEFT JOIN UnitsSold u
-ON p.product_id = u.product_id AND
-u.purchase_date BETWEEN start_date AND end_date
-group by product_id
+SELECT
+    P.PRODUCT_ID,
+    IFNULL(ROUND(SUM(UNITS*PRICE)/SUM(UNITS), 2), 0) AS AVERAGE_PRICE
+FROM
+    PRICES    P
+    LEFT JOIN UNITSSOLD U
+    ON P.PRODUCT_ID = U.PRODUCT_ID
+    AND U.PURCHASE_DATE BETWEEN START_DATE
+    AND END_DATE
+GROUP BY
+    PRODUCT_ID

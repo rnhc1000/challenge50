@@ -51,10 +51,34 @@ Products with product_id = 5 is ordered in February a total of (50 + 50) = 100.
 Write a solution to get the names of products that have at least 100 units ordered 
 in February 2020 and their amount.
 
-select p.product_name, sum(o.unit) as unit from products p 
-INNER JOIN orders o on p.product_id = o.product_id where o.order_date like '2020-02%'
-group by p.product_name  order by o.unit desc
+# ---
 
-select p.product_name, sum(o.unit) as unit from products p 
-INNER JOIN orders o on p.product_id = o.product_id where o.order_date like '2020-02%'  
- group by p.product_name  having sum(o.unit) >=  100 order by o.unit desc
+SELECT
+    P.PRODUCT_NAME,
+    SUM(O.UNIT)    AS UNIT
+FROM
+    PRODUCTS P
+    INNER JOIN ORDERS O
+    ON P.PRODUCT_ID = O.PRODUCT_ID
+WHERE
+    O.ORDER_DATE LIKE '2020-02%'
+GROUP BY
+    P.PRODUCT_NAME
+ORDER BY
+    O.UNIT DESC
+
+SELECT
+    P.PRODUCT_NAME,
+    SUM(O.UNIT)    AS UNIT
+FROM
+    PRODUCTS P
+    INNER JOIN ORDERS O
+    ON P.PRODUCT_ID = O.PRODUCT_ID
+WHERE
+    O.ORDER_DATE LIKE '2020-02%'
+GROUP BY
+    P.PRODUCT_NAME
+HAVING
+    SUM(O.UNIT) >= 100
+ORDER BY
+    O.UNIT DESC

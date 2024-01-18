@@ -34,4 +34,11 @@ Explanation:
 - Biology has 1 student, so we do not include it.
 - Computer has 1 student, so we do not include it.
 
-select class from courses  group by class having count(class) > 4
+SELECT
+    CLASS
+FROM
+    COURSES
+GROUP BY
+    CLASS
+HAVING
+    COUNT(CLASS) > 4

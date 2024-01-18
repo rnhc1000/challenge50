@@ -27,10 +27,16 @@ Output:
 Explanation: The single numbers are 1, 4, 5, and 6.
 Since 6 is the largest single number, we return it.
 
-SELECT 
-    max(num) AS num 
+SELECT
+    MAX(NUM) AS NUM
 FROM
-    (SELECT num 
-        FROM MyNumbers
-        GROUP BY num 
-        HAVING count(num)=1) AS num
+    (
+        SELECT
+            NUM
+        FROM
+            MYNUMBERS
+        GROUP BY
+            NUM
+        HAVING
+            COUNT(NUM)=1
+    ) AS NUM

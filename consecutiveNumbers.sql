@@ -130,17 +130,38 @@ Output:
 9 rows in set (0.00 sec)
 
 
-
 WITH CTE AS (
-    SELECT num,
-    lead(num,1) over() num1,
-    lead(num,2) over() num2
-    FROM logs
-
+    SELECT
+        NUM,
+        LEAD(NUM,
+        1) OVER() NUM1,
+        LEAD(NUM,
+        2) OVER() NUM2
+    FROM
+        LOGS
 )
 
-SELECT DISTINCT num ConsecutiveNums FROM CTE WHERE (num=num1) AND (num=num2)
-# Write your MySQL query statement below
-SELECT DISTINCT num as ConsecutiveNums
-FROM logs
-WHERE (id + 1, num) IN (SELECT * FROM logs) AND (id + 2, num) IN (SELECT * FROM logs)
+SELECT
+    DISTINCT NUM CONSECUTIVENUMS
+FROM
+    CTE
+WHERE
+    (NUM=NUM1)
+    AND (NUM=NUM2)
+    SELECT
+        DISTINCT NUM AS CONSECUTIVENUMS
+    FROM
+        LOGS
+    WHERE
+        (ID + 1, NUM) IN (
+            SELECT
+                *
+            FROM
+                LOGS
+        )
+        AND (ID + 2, NUM) IN (
+            SELECT
+                *
+            FROM
+                LOGS
+        )

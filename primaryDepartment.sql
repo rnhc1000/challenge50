@@ -53,40 +53,56 @@ CONDITION 2
 This will gives us all the employee_id and department_id Having Count of employee_id = 1.
 Example: (1,1) and (3,3) From testcase.
 
-SELECT employee_id, department_id
-FROM Employee 
-GROUP BY employee_id
-HAVING COUNT(employee_id) = 1
+# ---
 
-UNION will combine the date from both queries.
-
-FINAL SOLUTION
-
-SELECT employee_id, department_id
-FROM Employee 
-WHERE primary_flag = 'Y'
+SELECT
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
+FROM
+    EMPLOYEE
+GROUP BY
+    EMPLOYEE_ID
+HAVING
+    COUNT(EMPLOYEE_ID) = 1
 UNION
-SELECT employee_id, department_id
-FROM Employee 
-GROUP BY employee_id
-HAVING COUNT(employee_id) = 1
-ORDER BY employee_id;
+WILL COMBINE THE DATE
+FROM
+    BOTH QUERIES. FINAL SOLUTION
+    SELECT
+        EMPLOYEE_ID,
+        DEPARTMENT_ID
+    FROM
+        EMPLOYEE
+    WHERE
+        PRIMARY_FLAG = 'Y'
+    UNION
+    SELECT
+        EMPLOYEE_ID,
+        DEPARTMENT_ID
+    FROM
+        EMPLOYEE
+    GROUP BY
+        EMPLOYEE_ID
+    HAVING
+        COUNT(EMPLOYEE_ID) = 1
+    ORDER BY
+        EMPLOYEE_ID;
 
-# Write your MySQL query statement below
-SELECT 
-  employee_id, 
-  department_id 
-FROM 
-  Employee 
-WHERE 
-  primary_flag = 'Y' 
-UNION 
-SELECT 
-  employee_id, 
-  department_id 
-FROM 
-  Employee 
-GROUP BY 
-  employee_id 
-HAVING 
-  COUNT(employee_id) = 1;
+
+SELECT
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
+FROM
+    EMPLOYEE
+WHERE
+    PRIMARY_FLAG = 'Y'
+UNION
+SELECT
+    EMPLOYEE_ID,
+    DEPARTMENT_ID
+FROM
+    EMPLOYEE
+GROUP BY
+    EMPLOYEE_ID
+HAVING
+    COUNT(EMPLOYEE_ID) = 1;

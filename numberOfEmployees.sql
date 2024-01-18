@@ -30,27 +30,6 @@ Hercy has 2 people report directly to him, Alice and Bob.
 Their average age is (41+36)/2 = 38.5, which is 39 after rounding it to the 
 nearest integer.
 
-SELECT e.employee_id, 
-    e.name, 
-    count(r.employee_id) reports_count, 
-    ROUND(avg(r.age), 0) average_age
-FROM Employees e 
-INNER JOIN Employees r ON e.employee_id = r.reports_to
-GROOUP BY e.employee_id, e.name
-HAVING count(r.employee_id) >= 1
-ORDER BY e.employee_id
-
-SELECT 
-        e1.employee_id, 
-        e1.name, 
-        count(e2.reports_to) AS reports_count, 
-        round(avg(e2.age),2) AS average_age 
-FROM Employees e1 
-LEFT JOIN Employees e2 ON e1.employee_id=e2.reports_to 
-WHERE e2.reports_to IS NOT NULL
-GROUP BY e2.reports_to 
-ORDER BY e1.employee_id
-
 Intuition
 Need to print the manager details which consist of Manager employee id, name, 
 number of employees reporting to them and average age of people reporting to 
@@ -80,3 +59,35 @@ and average ages for employees sharing the same manager.
 The combination of COUNT(e2.reports_to) and ROUND(AVG(e2.age)) from the E2 table encapsulates 
 the key metrics needed for analysis, aligning with the specific conditions outlined in the 
 problem statement.
+
+SELECT
+    E.EMPLOYEE_ID,
+    E.NAME,
+    COUNT(R.EMPLOYEE_ID) REPORTS_COUNT,
+    ROUND(AVG(R.AGE),
+    0) AVERAGE_AGE
+FROM
+    EMPLOYEES E
+    INNER JOIN EMPLOYEES R
+    ON E.EMPLOYEE_ID = R.REPORTS_TO GROOUP BY E.EMPLOYEE_ID,
+    E.NAME
+HAVING
+    COUNT(R.EMPLOYEE_ID) >= 1
+ORDER BY
+    E.EMPLOYEE_ID
+    SELECT
+        E1.EMPLOYEE_ID,
+        E1.NAME,
+        COUNT(E2.REPORTS_TO) AS REPORTS_COUNT,
+        ROUND(AVG(E2.AGE),
+        2) AS AVERAGE_AGE
+    FROM
+        EMPLOYEES E1
+        LEFT JOIN EMPLOYEES E2
+        ON E1.EMPLOYEE_ID=E2.REPORTS_TO
+    WHERE
+        E2.REPORTS_TO IS NOT NULL
+    GROUP BY
+        E2.REPORTS_TO
+    ORDER BY
+        E1.EMPLOYEE_ID

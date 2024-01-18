@@ -36,12 +36,24 @@ Output:
 Explanation: 
 The customers who bought all the products (5 and 6) are customers with IDs 1 and 3.
 
-SELECT c.customer_id from customer c right join product p on c.product_key=p.product_key 
-having count(c.product_key) > 1
-
-
-    SELECT c.customer_id
- FROM customer c
-  GROUP BY c.customer_id
-   HAVING count(distinct c.product_key)=(SELECT count(distinct product_key) 
-    FROM product)
+SELECT
+    C.CUSTOMER_ID
+FROM
+    CUSTOMER C
+    RIGHT JOIN PRODUCT P
+    ON C.PRODUCT_KEY=P.PRODUCT_KEY
+HAVING
+    COUNT(C.PRODUCT_KEY) > 1
+    SELECT
+        C.CUSTOMER_ID
+    FROM
+        CUSTOMER C
+    GROUP BY
+        C.CUSTOMER_ID
+    HAVING
+        COUNT(DISTINCT C.PRODUCT_KEY)=(
+            SELECT
+                COUNT(DISTINCT PRODUCT_KEY)
+            FROM
+                PRODUCT
+        )

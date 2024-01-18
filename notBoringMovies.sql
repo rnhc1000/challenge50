@@ -29,15 +29,8 @@ Output:
 
 
 SELECT
-
-        id, movie, description, rating 
-
-FROM    Cinema 
-
-WHERE   description <> "boring" 
-
-AND     (id % 2) > 0
-
-ORDER BY rating 
-
-DESC;
+ID, MOVIE, DESCRIPTION, RATING
+FROM CINEMA
+WHERE DESCRIPTION <> "boring"
+AND (ID % 2) > 0
+ORDER BY RATING DESC;

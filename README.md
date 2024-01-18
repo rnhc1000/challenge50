@@ -23,7 +23,7 @@ Let's dive into it!
 ## _Screenshot_
 [![](./binarySearch.png)]()
 ## _Links_
-- Live Site URL: [] 
+- Live Site URL: [https://leetcode.com/studyplan/top-sql-50/] 
 ## _Built with_
 
  ![](https://ferreiras.dev.br/assets/images/icons/mysql-official.svg)| ![](https://ferreiras.dev.br/assets/images/icons/git-scm-icon.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-intellij-idea.svg) | ![](https://ferreiras.dev.br/assets/images/icons/linux-original.svg) | ![](https://ferreiras.dev.br/assets/images/icons/icons8-visual-studio-code.svg)

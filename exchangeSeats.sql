@@ -61,8 +61,12 @@ Space complexity:
 O(n), because the output of this query will contain n rows, where n is the number of rows 
 in the Seat table.
 
-SELECT 
-    id, 
-    IF(id % 2 = 1, LEAD(student, 1, student) OVER (ORDER BY id), LAG(student) OVER(ORDER BY id)) AS student
-FROM 
-    Seat;
+SELECT
+    ID,
+    IF(ID % 2 = 1,
+    LEAD(STUDENT,
+    1,
+    STUDENT) OVER (ORDER BY ID),
+    LAG(STUDENT) OVER(ORDER BY ID)) AS STUDENT
+FROM
+    SEAT;

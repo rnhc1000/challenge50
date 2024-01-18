@@ -24,30 +24,42 @@ Explanation:
 The person with id 3 is a friend of people 1, 2, and 4, 
 so he has three friends in total, which is the most number than any others.]
 
-SELECT DISTINCT requester_id 
-AS id, 
-COUNT(*) AS num
+SELECT
+    DISTINCT REQUESTER_ID AS ID,
+    COUNT(*) AS NUM
 FROM
+    (
+        SELECT
+            REQUESTER_ID,
+            ACCEPTER_ID
+        FROM
+            REQUESTACCEPTED
+        UNION
+        SELECT
+            ACCEPTER_ID,
+            REQUESTER_ID
+        FROM
+            REQUESTACCEPTED
+    ) AS REQUESTS
+GROUP BY
+    REQUESTER_ID
+ORDER BY
+    NUM DESC LIMIT 1
 
-(
-SELECT requester_id, accepter_id   
-FROM RequestAccepted
-
-UNION
-    
-SELECT accepter_id, requester_id 
-FROM RequestAccepted
-)
- 
-AS requests
-
-GROUP BY requester_id
-ORDER BY num DESC
-LIMIT 1
-
-select requester_id as id,
-       (select count(*) from RequestAccepted
-            where id=requester_id or id=accepter_id) as num
-from RequestAccepted
-group by requester_id
-order by num desc limit 1
+SELECT
+    REQUESTER_ID AS ID,
+    (
+        SELECT
+            COUNT(*)
+        FROM
+            REQUESTACCEPTED
+        WHERE
+            ID=REQUESTER_ID
+            OR ID=ACCEPTER_ID
+    ) AS NUM
+FROM
+    REQUESTACCEPTED
+GROUP BY
+    REQUESTER_ID
+ORDER BY
+    NUM DESC LIMIT 1
